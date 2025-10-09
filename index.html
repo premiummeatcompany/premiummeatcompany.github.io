@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark">
+  <meta name="description" content="Premium Meat Company — Under construction. Something delicious is coming soon." />
+  <title>Premium Meat Company — Under Construction</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64'%3E%3Ctext y='0.9em' font-size='60'%3E%F0%9F%8D%94%3C/text%3E%3C/svg%3E">
+
+  <style>
+    :root{
+      --bg: #0b0b0f;
+      --card: #13131a;
+      --muted: #a5a8b1;
+      --text: #eef0f3;
+      --accent: #ef4444; /* chili red */
+      --accent-2: #f59e0b; /* ember */
+      --ring: #ffffff22;
+      --radius: 16px;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --maxw: 72rem;
+    }
+
+    /* Reset-ish */
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: radial-gradient(1200px 600px at 20% -10%, #1b1b22 0%, transparent 60%),
+                  radial-gradient(900px 500px at 120% 120%, #1a0f0f 0%, transparent 55%),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    .wrap {
+      min-height: 100%;
+      display: grid;
+      place-items: center;
+      padding: 6vh 5vw;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 760px;
+      background: linear-gradient(180deg, #14141b 0%, #0f0f14 100%);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: clip;
+      border: 1px solid #ffffff10;
+      isolation: isolate;
+    }
+
+    /* subtle animated grill-lines */
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: -200%;
+      background:
+        repeating-linear-gradient(
+          45deg,
+          transparent 0 18px,
+          #ffffff07 18px 34px
+        );
+      transform: translate3d(0,0,0) rotate(0.0001deg);
+      animation: drift 28s linear infinite;
+      mix-blend-mode: overlay;
+      pointer-events: none;
+      opacity: .25;
+    }
+    @keyframes drift {
+      to { transform: translate3d(-25%, -25%, 0) rotate(0.0001deg); }
+    }
+
+    header, main, footer { padding: clamp(18px, 3.5vw, 28px); }
+
+    header {
+      display: grid;
+      gap: 10px;
+      align-items: center;
+      grid-template-columns: auto 1fr;
+    }
+
+    .logo {
+      width: 48px; height: 48px;
+      border-radius: 12px;
+      display: grid; place-items: center;
+      background: radial-gradient(100% 100% at 70% 30%, #2a0e0e 0%, #150707 60%, #0d0d12 100%);
+      border: 1px solid #ffffff18;
+      box-shadow: inset 0 1px 0 #ffffff10, 0 10px 20px #00000055;
+      font-size: 28px;
+    }
+
+    .brand h1 {
+      margin: 0;
+      font-size: clamp(1.25rem, 3.5vw, 1.8rem);
+      letter-spacing: 0.2px;
+      line-height: 1.2;
+      background: linear-gradient(90deg, var(--text), #e5e7eb 40%, #ffffff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .brand p {
+      margin: 0;
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
+    .hero {
+      margin-top: 8px;
+      border-top: 1px dashed #ffffff14;
+      border-bottom: 1px dashed #ffffff14;
+      padding: clamp(18px, 3.5vw, 28px) 0;
+      display: grid;
+      gap: clamp(14px, 2.5vw, 22px);
+      text-align: center;
+    }
+
+    .hero h2 {
+      margin: 0;
+      font-size: clamp(1.4rem, 4.5vw, 2.1rem);
+      line-height: 1.15;
+    }
+    .hero p {
+      margin: 0 auto;
+      color: var(--muted);
+      max-width: 55ch;
+    }
+
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+    }
+    .pill {
+      padding: 6px 10px;
+      font-size: .8rem;
+      color: #fff;
+      border-radius: 999px;
+      border: 1px solid #ffffff14;
+      background: linear-gradient(180deg, #1a1a23, #101017);
+      box-shadow: inset 0 1px 0 #ffffff0f;
+    }
+
+    .cta {
+      display: grid;
+      gap: 10px;
+      align-items: center;
+      grid-template-columns: 1fr;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    @media (min-width: 560px){
+      .cta { grid-template-columns: 1fr auto; }
+    }
+
+    .input {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+    .input label {
+      font-size: .85rem;
+      color: var(--muted);
+    }
+    .input input[type="email"]{
+      width: 100%;
+      padding: 14px 14px;
+      border-radius: 12px;
+      border: 1px solid #ffffff1a;
+      background: #0e0e14;
+      color: var(--text);
+      outline: none;
+      transition: box-shadow .2s, border-color .2s;
+    }
+    .input input::placeholder { color: #9aa1ac; }
+    .input input:focus{
+      border-color: #ffffff33;
+      box-shadow: 0 0 0 6px var(--ring);
+    }
+
+    .btn {
+      appearance: none;
+      padding: 14px 18px;
+      border-radius: 12px;
+      border: 1px solid #ffffff18;
+      background: linear-gradient(180deg, var(--accent), var(--accent-2));
+      color: #0b0b0f;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: transform .06s ease, filter .15s ease;
+    }
+    .btn:active { transform: translateY(1px) scale(.99); }
+    .btn:focus-visible { outline: 3px solid #ffffff66; outline-offset: 2px; }
+
+    .meta {
+      display: grid;
+      gap: 6px;
+      justify-items: center;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    .links {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .link {
+      color: #d1d5db;
+      text-decoration: none;
+      border-bottom: 1px dashed #ffffff30;
+    }
+    .link:hover { border-bottom-style: solid; }
+
+    footer {
+      display: grid;
+      gap: 8px;
+      color: var(--muted);
+      font-size: .85rem;
+    }
+
+    .countdown {
+      display: inline-grid;
+      grid-auto-flow: column;
+      gap: clamp(8px, 1.8vw, 14px);
+      align-items: center;
+      justify-content: center;
+      margin: 4px 0 8px;
+      user-select: none;
+    }
+    .tile {
+      min-width: 64px;
+      background: #0e0e14;
+      border: 1px solid #ffffff12;
+      border-radius: 10px;
+      padding: 10px 8px;
+      text-align: center;
+      box-shadow: inset 0 1px 0 #ffffff0a;
+    }
+    .tile .n { font-size: 1.15rem; font-weight: 700; letter-spacing: .5px; }
+    .tile .u { font-size: .7rem; color: var(--muted); }
+
+    @media (prefers-reduced-motion: reduce){
+      .card::before, .btn { animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card" role="region" aria-label="Under construction">
+      <!--header>
+        <div class="logo" aria-hidden="true">🥩</div>
+        <div class="brand">
+          <h1>Premium Meat Company</h1>
+          <p>Crafting prime experiences. The site is marinating.</p>
+        </div>
+      </header-->
+
+      <main>
+        <section class="hero" aria-labelledby="headline">
+          <h2 id="headline">Premium Meat Company</h2>
+          <p>
+            UNDER CONSTRUCTION
+          </p>
+
+          <!--div class="badges" aria-hidden="true">
+            <span class="pill">Grass-fed quality</span>
+            <span class="pill">Ethical sourcing</span>
+            <span class="pill">Cold-chain logistics</span>
+          </div-->
+
+          <div class="countdown" aria-live="polite" aria-atomic="true">
+            <div class="tile"><div class="n" id="d">—</div><div class="u">days</div></div>
+            <div class="tile"><div class="n" id="h">—</div><div class="u">hours</div></div>
+            <div class="tile"><div class="n" id="m">—</div><div class="u">mins</div></div>
+            <div class="tile"><div class="n" id="s">—</div><div class="u">secs</div></div>
+          </div>
+
+          <!--form class="cta" action="#" method="post" onsubmit="alert('Thanks! We will notify you.'); return false;" aria-label="Notify me">
+            <div class="input">
+              <label for="email">Get launch updates</label>
+              <input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required />
+            </div>
+            <button class="btn" type="submit" aria-label="Notify me">Notify me</button>
+          </form-->
+
+          <div class="meta">
+            
+            <div class="links">
+              <a class="link" href="mailto:contac@premiummeatcompany.eu">contac@premiummeatcompany.eu</a>
+              <!--a class="link" href="tel:+3612345678">+36 1 234 5678</a-->
+              <!--a class="link" href="#" aria-disabled="true" onclick="return false;">Instagram</a-->
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer >
+        <div>&copy; <span id="year"></span> Premium Meat Company. All rights reserved.</div>
+        <noscript>JavaScript is disabled—countdown won’t tick, but everything else works.</noscript>
+      </footer>
+    </div>
+  </div>
+
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Simple countdown (set a target date or comment this out)
+    const target = new Date();
+    target.setDate(target.getDate() + 21); // launch in 21 days (adjust as needed)
+
+    const $d = document.getElementById('d');
+    const $h = document.getElementById('h');
+    const $m = document.getElementById('m');
+    const $s = document.getElementById('s');
+
+    function tick(){
+      const now = new Date();
+      let diff = Math.max(0, target - now);
+
+      const days  = Math.floor(diff / (1000*60*60*24)); diff -= days*24*60*60*1000;
+      const hours = Math.floor(diff / (1000*60*60));    diff -= hours*60*60*1000;
+      const mins  = Math.floor(diff / (1000*60));       diff -= mins*60*1000;
+      const secs  = Math.floor(diff / 1000);
+
+      $d.textContent = String(days);
+      $h.textContent = String(hours).padStart(2,'0');
+      $m.textContent = String(mins).padStart(2,'0');
+      $s.textContent = String(secs).padStart(2,'0');
+    }
+    tick();
+    setInterval(tick, 1000);
+  </script>
+</body>
+</html>
