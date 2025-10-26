@@ -1351,8 +1351,8 @@ section,
   box-shadow: none;
   border-radius: 0;
   color: var(--default-color);
-  background-color: color-mix(in srgb, var(--background-color), transparent 50%);
-  border-color: color-mix(in srgb, var(--default-color), transparent 60%);
+  background-color: color-mix(in srgb, var(--background-color), transparent 100%);
+  border-color: color-mix(in srgb, var(--default-color), transparent 20%);
 }
 
 .contact .php-email-form input[type=text]:focus,
@@ -1364,7 +1364,7 @@ section,
 .contact .php-email-form input[type=text]::placeholder,
 .contact .php-email-form input[type=email]::placeholder,
 .contact .php-email-form textarea::placeholder {
-  color: color-mix(in srgb, var(--default-color), transparent 70%);
+  color: color-mix(in srgb, var(--default-color), transparent 40%);
 }
 
 .contact .php-email-form button[type=submit] {
