@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://premiummeatcompany.github.io/sitemap.xml
+Sitemap: https://premiummeatcompany.eu/sitemap.xml
