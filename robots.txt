@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://premiummeatcompany.github.io/sitemap.xml
