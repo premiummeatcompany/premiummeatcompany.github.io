@@ -382,6 +382,9 @@
   }
 
   function detectLanguage() {
+    const urlLanguage = normalizeLanguage(new URLSearchParams(window.location.search).get("lang"));
+    if (urlLanguage) return urlLanguage;
+
     const storedLanguage = normalizeLanguage(getStoredLanguage());
     if (storedLanguage) return storedLanguage;
 
@@ -391,7 +394,25 @@
       if (normalized) return normalized;
     }
 
+    const timeZoneLanguage = normalizeLanguageByTimeZone(Intl.DateTimeFormat().resolvedOptions().timeZone);
+    if (timeZoneLanguage) return timeZoneLanguage;
+
     return defaultLanguage;
+  }
+
+  function normalizeLanguageByTimeZone(timeZone) {
+    const timeZoneMap = {
+      "Asia/Tokyo": "ja",
+      "Europe/Berlin": "de",
+      "Europe/Vienna": "de",
+      "Europe/Budapest": "hu",
+      "Europe/Bucharest": "ro",
+      "Europe/Bratislava": "sk",
+      "Europe/Prague": "cs",
+      "Europe/Ljubljana": "sl"
+    };
+
+    return timeZoneMap[timeZone] || null;
   }
 
   function translate(language) {
