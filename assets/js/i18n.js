@@ -383,18 +383,27 @@
 
   async function detectLanguage() {
     const urlLanguage = getUrlLanguage();
-    if (urlLanguage) return urlLanguage;
-
-    const storedLanguage = normalizeLanguage(getStoredLanguage());
-    if (storedLanguage) return storedLanguage;
+    if (urlLanguage) return {
+      language: urlLanguage,
+      source: "url"
+    };
 
     const localityLanguage = await detectLocalityLanguage();
-    if (localityLanguage) return localityLanguage;
+    if (localityLanguage) return {
+      language: localityLanguage,
+      source: "ip"
+    };
 
     const browserLanguage = detectBrowserLanguage();
-    if (browserLanguage) return browserLanguage;
+    if (browserLanguage) return {
+      language: browserLanguage,
+      source: "browser"
+    };
 
-    return defaultLanguage;
+    return {
+      language: defaultLanguage,
+      source: "fallback"
+    };
   }
 
   function getUrlLanguage() {
@@ -402,27 +411,48 @@
   }
 
   async function detectLocalityLanguage() {
-    const ipLanguage = await detectIpLanguage();
-    if (ipLanguage) return ipLanguage;
-
-    return normalizeLanguageByTimeZone(Intl.DateTimeFormat().resolvedOptions().timeZone);
+    return detectIpLanguage();
   }
 
   async function detectIpLanguage() {
     if (!window.fetch || !window.AbortController) return null;
 
+    const providers = [
+      {
+        url: "https://api.country.is/",
+        countryCode: (data) => data.country
+      },
+      {
+        url: "https://geo.kamero.ai/api/geo",
+        countryCode: (data) => data.country
+      },
+      {
+        url: "https://iplookup.dev/api/me",
+        countryCode: (data) => data.country_code
+      }
+    ];
+
+    for (const provider of providers) {
+      const countryCode = await fetchCountryCode(provider);
+      const language = normalizeLanguageByCountry(countryCode);
+      if (language) return language;
+    }
+
+    return null;
+  }
+
+  async function fetchCountryCode(provider) {
     const controller = new AbortController();
-    const timeout = window.setTimeout(() => controller.abort(), 1200);
+    const timeout = window.setTimeout(() => controller.abort(), 1500);
 
     try {
-      const response = await fetch("https://ipapi.co/json/", {
+      const response = await fetch(provider.url, {
         signal: controller.signal
       });
       if (!response.ok) return null;
 
       const data = await response.json();
-      return normalizeLanguageByCountry(data.country_code || data.country) ||
-        normalizeLanguageByTimeZone(data.timezone);
+      return provider.countryCode(data);
     } catch (error) {
       return null;
     } finally {
@@ -541,7 +571,8 @@
     const languageSelect = document.querySelector("#language-select");
     const initialLanguage = await detectLanguage();
 
-    translate(initialLanguage);
+    document.documentElement.setAttribute("data-language-source", initialLanguage.source);
+    translate(initialLanguage.language);
 
     if (languageSelect) {
       languageSelect.addEventListener("change", (event) => {
