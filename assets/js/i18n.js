@@ -2,7 +2,7 @@
   "use strict";
 
   const defaultLanguage = "en";
-  const supportedLanguages = ["en", "de", "ja", "ro", "sk", "sl", "hu", "ar"];
+  const supportedLanguages = ["en", "de", "ja", "ro", "cs", "sk", "sl", "hu", "ar"];
   const rtlLanguages = ["ar"];
 
   const translations = {
@@ -161,6 +161,45 @@
       "form.submit": "Trimiteți mesajul",
       "footer.copyright": "Copyright",
       "footer.rights": "Toate drepturile rezervate"
+    },
+    cs: {
+      metaTitle: "Premium Meat Company",
+      metaDescription: "Premium Meat Company dodává kvalitní játra z vykrmené kachny, stehna, spodní stehna a žaludky partnerům v Maďarsku a EU.",
+      "language.label": "Jazyk",
+      "nav.home": "Domů",
+      "nav.about": "O nás",
+      "nav.products": "Produkty",
+      "nav.events": "Události",
+      "nav.contact": "Kontakt",
+      "hero.title": "Premium Meat Company",
+      typedItems: "Nejjemnější játra z vykrmené kachny, Vybraná kachní stehna, Prvotřídní spodní stehna, Tradiční kachní žaludky",
+      "about.title": "O nás",
+      "about.body": "Premium Meat Company Kft. je dynamický velkoobchod s kvalitními masnými a rybími produkty, který obsluhuje partnery v celém Maďarsku a Evropské unii. Naší hlavní specialitou jsou prémiové kachní produkty, čerstvé i mražené, získávané a zpracovávané s mimořádnou péčí. Kromě kachních produktů nabízíme také široký výběr zpracovaných masných výrobků a zákazníkům zajišťujeme stálou kvalitu a spolehlivé dodávky.",
+      "products.title": "Produkty",
+      "products.liver.name": "Játra z vykrmené kachny",
+      "products.legs.name": "Stehna z vykrmené kachny",
+      "products.gizzard.name": "Žaludky z vykrmené kachny",
+      "products.whole.name": "Celá vykrmená kachna",
+      "products.whole.note": "Volitelně s játry 600 g+",
+      "products.drumsticks.name": "Spodní stehna z vykrmené kachny",
+      "products.breast.name": "Mražená prsa z vykrmené kachny",
+      "events.title": "Události",
+      "events.omek": "OMÉK - Hungarian Food Summit 2025",
+      "contact.title": "Kontakt",
+      "contact.address.title": "Adresa",
+      "contact.address.value": "Fő utca 1., Tök, 2073",
+      "contact.phone.title": "Zavolejte nám",
+      "contact.email.title": "Email",
+      "form.name": "Vaše jméno",
+      "form.email": "Váš email",
+      "form.phone": "Váš telefon",
+      "form.subject": "Předmět",
+      "form.message": "Zpráva",
+      "form.loading": "Načítání",
+      "form.sent": "Vaše zpráva byla odeslána. Děkujeme!",
+      "form.submit": "Odeslat zprávu",
+      "footer.copyright": "Copyright",
+      "footer.rights": "Všechna práva vyhrazena"
     },
     sk: {
       metaTitle: "Premium Meat Company",
