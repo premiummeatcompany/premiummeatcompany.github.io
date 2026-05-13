@@ -381,23 +381,96 @@
     return supportedLanguages.includes(base) ? base : null;
   }
 
-  function detectLanguage() {
-    const urlLanguage = normalizeLanguage(new URLSearchParams(window.location.search).get("lang"));
+  async function detectLanguage() {
+    const urlLanguage = getUrlLanguage();
     if (urlLanguage) return urlLanguage;
 
     const storedLanguage = normalizeLanguage(getStoredLanguage());
     if (storedLanguage) return storedLanguage;
 
+    const localityLanguage = await detectLocalityLanguage();
+    if (localityLanguage) return localityLanguage;
+
+    const browserLanguage = detectBrowserLanguage();
+    if (browserLanguage) return browserLanguage;
+
+    return defaultLanguage;
+  }
+
+  function getUrlLanguage() {
+    return normalizeLanguage(new URLSearchParams(window.location.search).get("lang"));
+  }
+
+  async function detectLocalityLanguage() {
+    const ipLanguage = await detectIpLanguage();
+    if (ipLanguage) return ipLanguage;
+
+    return normalizeLanguageByTimeZone(Intl.DateTimeFormat().resolvedOptions().timeZone);
+  }
+
+  async function detectIpLanguage() {
+    if (!window.fetch || !window.AbortController) return null;
+
+    const controller = new AbortController();
+    const timeout = window.setTimeout(() => controller.abort(), 1200);
+
+    try {
+      const response = await fetch("https://ipapi.co/json/", {
+        signal: controller.signal
+      });
+      if (!response.ok) return null;
+
+      const data = await response.json();
+      return normalizeLanguageByCountry(data.country_code || data.country) ||
+        normalizeLanguageByTimeZone(data.timezone);
+    } catch (error) {
+      return null;
+    } finally {
+      window.clearTimeout(timeout);
+    }
+  }
+
+  function detectBrowserLanguage() {
     const browserLanguages = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language];
     for (const language of browserLanguages) {
       const normalized = normalizeLanguage(language);
       if (normalized) return normalized;
     }
 
-    const timeZoneLanguage = normalizeLanguageByTimeZone(Intl.DateTimeFormat().resolvedOptions().timeZone);
-    if (timeZoneLanguage) return timeZoneLanguage;
+    return null;
+  }
 
-    return defaultLanguage;
+  function normalizeLanguageByCountry(countryCode) {
+    if (!countryCode) return null;
+
+    const countryLanguageMap = {
+      JP: "ja",
+      DE: "de",
+      AT: "de",
+      HU: "hu",
+      RO: "ro",
+      CZ: "cs",
+      SK: "sk",
+      SI: "sl",
+      AE: "ar",
+      BH: "ar",
+      DZ: "ar",
+      EG: "ar",
+      IQ: "ar",
+      JO: "ar",
+      KW: "ar",
+      LB: "ar",
+      LY: "ar",
+      MA: "ar",
+      OM: "ar",
+      QA: "ar",
+      SA: "ar",
+      SY: "ar",
+      TN: "ar",
+      YE: "ar"
+    };
+
+    return countryLanguageMap[countryCode.toUpperCase()] || null;
   }
 
   function normalizeLanguageByTimeZone(timeZone) {
@@ -464,9 +537,9 @@
     }));
   }
 
-  document.addEventListener("DOMContentLoaded", () => {
+  document.addEventListener("DOMContentLoaded", async () => {
     const languageSelect = document.querySelector("#language-select");
-    const initialLanguage = detectLanguage();
+    const initialLanguage = await detectLanguage();
 
     translate(initialLanguage);
 
