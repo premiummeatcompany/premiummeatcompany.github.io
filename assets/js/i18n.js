@@ -2,7 +2,7 @@
   "use strict";
 
   const defaultLanguage = "en";
-  const supportedLanguages = ["en", "de", "ja", "ro", "sk", "hu"];
+  const supportedLanguages = ["en", "de", "ja", "ro", "sk", "sl", "hu"];
 
   const translations = {
     en: {
@@ -199,6 +199,45 @@
       "form.submit": "Odoslať správu",
       "footer.copyright": "Copyright",
       "footer.rights": "Všetky práva vyhradené"
+    },
+    sl: {
+      metaTitle: "Premium Meat Company",
+      metaDescription: "Premium Meat Company dobavlja visokokakovostna jetra pitanih rac, stegna, krače in želodčke partnerjem na Madžarskem in v EU.",
+      "language.label": "Jezik",
+      "nav.home": "Domov",
+      "nav.about": "O nas",
+      "nav.products": "Izdelki",
+      "nav.events": "Dogodki",
+      "nav.contact": "Kontakt",
+      "hero.title": "Premium Meat Company",
+      typedItems: "Najboljša jetra pitanih rac, Izbrana račja stegna, Prvovrstne račje krače, Tradicionalni račji želodčki",
+      "about.title": "O nas",
+      "about.body": "Premium Meat Company Kft. je dinamičen veletrgovec z visokokakovostnimi mesnimi in ribjimi izdelki, ki oskrbuje partnerje po vsej Madžarski in Evropski uniji. Naša glavna posebnost so premium račji izdelki, sveži in zamrznjeni, pridobljeni in obdelani z izjemno skrbnostjo. Poleg račjih izdelkov ponujamo tudi širok izbor predelanih mesnih izdelkov ter strankam zagotavljamo stalno kakovost in zanesljivo dobavo.",
+      "products.title": "Izdelki",
+      "products.liver.name": "Jetra pitane race",
+      "products.legs.name": "Stegna pitane race",
+      "products.gizzard.name": "Želodčki pitane race",
+      "products.whole.name": "Cela pitana raca",
+      "products.whole.note": "Po želji z jetri 600 g+",
+      "products.drumsticks.name": "Krače pitane race",
+      "products.breast.name": "Zamrznjene prsi pitane race",
+      "events.title": "Dogodki",
+      "events.omek": "OMÉK - Hungarian Food Summit 2025",
+      "contact.title": "Kontakt",
+      "contact.address.title": "Naslov",
+      "contact.address.value": "Fő utca 1., Tök, 2073",
+      "contact.phone.title": "Pokličite nas",
+      "contact.email.title": "Email",
+      "form.name": "Vaše ime",
+      "form.email": "Vaš email",
+      "form.phone": "Vaša telefonska številka",
+      "form.subject": "Zadeva",
+      "form.message": "Sporočilo",
+      "form.loading": "Nalaganje",
+      "form.sent": "Vaše sporočilo je bilo poslano. Hvala!",
+      "form.submit": "Pošlji sporočilo",
+      "footer.copyright": "Avtorske pravice",
+      "footer.rights": "Vse pravice pridržane"
     },
     hu: {
       metaTitle: "Premium Meat Company",
