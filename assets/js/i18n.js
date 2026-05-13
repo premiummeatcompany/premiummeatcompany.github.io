@@ -2,7 +2,8 @@
   "use strict";
 
   const defaultLanguage = "en";
-  const supportedLanguages = ["en", "de", "ja", "ro", "sk", "sl", "hu"];
+  const supportedLanguages = ["en", "de", "ja", "ro", "sk", "sl", "hu", "ar"];
+  const rtlLanguages = ["ar"];
 
   const translations = {
     en: {
@@ -277,6 +278,45 @@
       "form.submit": "Üzenet küldése",
       "footer.copyright": "Szerzői jog",
       "footer.rights": "Minden jog fenntartva"
+    },
+    ar: {
+      metaTitle: "Premium Meat Company",
+      metaDescription: "توفر Premium Meat Company كبد البط المسمن وأفخاذ البط والسيقان والقوانص عالية الجودة للشركاء في المجر والاتحاد الأوروبي.",
+      "language.label": "اللغة",
+      "nav.home": "الرئيسية",
+      "nav.about": "من نحن",
+      "nav.products": "المنتجات",
+      "nav.events": "الفعاليات",
+      "nav.contact": "اتصل بنا",
+      "hero.title": "Premium Meat Company",
+      typedItems: "أجود كبد البط المسمن, أفخاذ بط مختارة, سيقان بط ممتازة, قوانص تقليدية",
+      "about.title": "من نحن",
+      "about.body": "Premium Meat Company Kft. هي شركة جملة ديناميكية للمنتجات عالية الجودة من اللحوم والأسماك، وتخدم شركاء في جميع أنحاء المجر والاتحاد الأوروبي. يتمثل تخصصنا الأساسي في منتجات البط الممتازة، الطازجة والمجمدة، والتي يتم توريدها والتعامل معها بعناية استثنائية. إلى جانب منتجات البط، نقدم أيضا مجموعة واسعة من منتجات اللحوم المصنعة، مع ضمان جودة ثابتة وإمداد موثوق لعملائنا.",
+      "products.title": "المنتجات",
+      "products.liver.name": "كبد البط المسمن",
+      "products.legs.name": "أفخاذ البط المسمن",
+      "products.gizzard.name": "قوانص البط المسمن",
+      "products.whole.name": "بط مسمن كامل",
+      "products.whole.note": "اختياريا مع كبد 600 غرام+",
+      "products.drumsticks.name": "سيقان البط المسمن",
+      "products.breast.name": "صدر بط مسمن مجمد",
+      "events.title": "الفعاليات",
+      "events.omek": "OMÉK - Hungarian Food Summit 2025",
+      "contact.title": "اتصل بنا",
+      "contact.address.title": "العنوان",
+      "contact.address.value": "Fő utca 1., Tök, 2073",
+      "contact.phone.title": "اتصلوا بنا",
+      "contact.email.title": "البريد الإلكتروني",
+      "form.name": "الاسم",
+      "form.email": "البريد الإلكتروني",
+      "form.phone": "رقم الهاتف",
+      "form.subject": "الموضوع",
+      "form.message": "الرسالة",
+      "form.loading": "جار التحميل",
+      "form.sent": "تم إرسال رسالتك. شكرا لك!",
+      "form.submit": "إرسال الرسالة",
+      "footer.copyright": "حقوق النشر",
+      "footer.rights": "جميع الحقوق محفوظة"
     }
   };
 
@@ -320,6 +360,7 @@
     const dictionary = translations[selectedLanguage];
 
     document.documentElement.lang = selectedLanguage;
+    document.documentElement.dir = rtlLanguages.includes(selectedLanguage) ? "rtl" : "ltr";
     document.title = dictionary.metaTitle;
 
     const description = document.querySelector('meta[name="description"]');

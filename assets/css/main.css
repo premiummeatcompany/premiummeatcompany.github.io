@@ -178,6 +178,19 @@ h6 {
   color: var(--heading-color);
 }
 
+html[dir="rtl"] body {
+  text-align: right;
+}
+
+html[dir="rtl"] .header .logo img {
+  margin-right: 0;
+  margin-left: 8px;
+}
+
+html[dir="rtl"] .section-title p {
+  text-align: right !important;
+}
+
 .scrolled .header {
   box-shadow: 0px 0 18px rgba(0, 0, 0, 0.1);
 }
