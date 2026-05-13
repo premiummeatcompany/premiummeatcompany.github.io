@@ -235,6 +235,29 @@ h6 {
     transition: 0.3s;
   }
 
+  .navmenu .language-item {
+    padding: 10px 0 10px 14px;
+  }
+
+  .language-select {
+    color: var(--nav-color);
+    background: transparent;
+    border: 1px solid color-mix(in srgb, var(--nav-color), transparent 55%);
+    border-radius: 4px;
+    padding: 5px 26px 5px 8px;
+    font: 500 14px var(--nav-font);
+  }
+
+  .language-select:focus {
+    outline: 2px solid color-mix(in srgb, var(--nav-color), transparent 35%);
+    outline-offset: 2px;
+  }
+
+  .language-select option {
+    color: #212529;
+    background: #ffffff;
+  }
+
   .navmenu>ul>li>a:before {
     content: "";
     position: absolute;
@@ -377,6 +400,25 @@ h6 {
     border-radius: 50%;
     transition: 0.3s;
     background-color: color-mix(in srgb, var(--accent-color), transparent 90%);
+  }
+
+  .navmenu .language-item {
+    padding: 10px 20px;
+  }
+
+  .language-select {
+    width: 100%;
+    color: var(--nav-dropdown-color);
+    background: #ffffff;
+    border: 1px solid color-mix(in srgb, var(--nav-dropdown-color), transparent 80%);
+    border-radius: 4px;
+    padding: 9px 10px;
+    font: 500 16px var(--nav-font);
+  }
+
+  .language-select:focus {
+    outline: 2px solid color-mix(in srgb, var(--nav-dropdown-hover-color), transparent 40%);
+    outline-offset: 2px;
   }
 
   .navmenu a i:hover,

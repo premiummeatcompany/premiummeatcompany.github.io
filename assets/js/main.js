@@ -105,11 +105,20 @@
   /**
    * Init typed.js
    */
-  const selectTyped = document.querySelector('.typed');
-  if (selectTyped) {
+  let typedInstance;
+
+  function initTyped() {
+    const selectTyped = document.querySelector('.typed');
+    if (!selectTyped || typeof Typed === 'undefined') return;
+
+    if (typedInstance) {
+      typedInstance.destroy();
+      selectTyped.textContent = '';
+    }
+
     let typed_strings = selectTyped.getAttribute('data-typed-items');
-    typed_strings = typed_strings.split(',');
-    new Typed('.typed', {
+    typed_strings = typed_strings.split(',').map((item) => item.trim());
+    typedInstance = new Typed('.typed', {
       strings: typed_strings,
       loop: true,
       typeSpeed: 100,
@@ -117,6 +126,9 @@
       backDelay: 2000
     });
   }
+
+  window.addEventListener('load', initTyped);
+  window.addEventListener('pmc:languagechange', initTyped);
 
   /**
    * Animate the skills items on reveal
